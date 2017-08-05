@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+
+<!-- SEO -->
+{% block title %}{% site_title %} Kimdir?{% endblock %}
+{% block meta_title %}{% site_title %}Kimdir?{% endblock %}
+{% block description %} {% site_description %} {% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{% site_title %} Kimdir?{% endblock %}
+{% block og_description %} {% site_description %} {% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}{% site_title %} Kimdir?{% endblock %}
+{% block og_image %}{{request.get_raw_uri}}{% site_image %}{% endblock %}
+
+{{% block content %}
+
+<!-- +++++ Welcome Section +++++ -->
+	<div id="ww">
+	    <div class="container">
+			<div class="row">
+				<div class="col-lg-8 col-lg-offset-2 centered">
+					<img src="{%  static 'img/user.png' %}" alt="Stanley">
+					<h3>Merhaba! </h3>
+
+                    {% autoescape off %}{% site_bio_short %}{% endautoescape %}
+
+				</div><!-- /col-lg-8 -->
+			</div><!-- /row -->
+	    </div> <!-- /container -->
+	</div><!-- /ww -->
+
+
+	<!-- +++++ Information Section +++++ -->
+
+	<div class="container pt">
+		<div class="row mt centered">
+                {% for i in love %}
+                <div class="col-lg-3">
+				<span class="{{ i.icon }}"></span>
+				{{ i.description|safe }}
+			</div>
+                {% endfor %}
+		</div><!-- /row -->
+
+		<div class="row mt">
+			<div class="col-lg-6">
+				<h4>Hakkımda</h4>
+                    {% autoescape off %}{% site_bio_long %}{% endautoescape %}
+			</div><!-- /colg-lg-6 -->
+
+
+
+			<div class="col-lg-6">
+				<h4>Yeteneklerim</h4>
+            {% for i in skills %}
+            {{ i.title }}
+            <div class="progress">
+                <div class="progress-bar progress-bar-theme" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100" style="width: {{ i.rate }}%;">
+                    <span class="sr-only">{{ i.rate }}% Tamamlandı.</span>
+                </div>
+            </div>
+            {% endfor %}
+
+			</div><!-- /col-lg-6 -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+
+
+{% endblock %}
+
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+<!-- SEO -->
+
+{% block title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block meta_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block description %}{% site_description %}{% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_description %}{% site_description %}{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}{% site_title %} - {% site_slogan %}{% endblock %}
+{% block og_image %}{{request.get_raw_uri}}{% site_image %}{% endblock %}
+
+{% block category %}
+<li class="dropdown">
+<a href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategoriler <span class="caret"></span></a>
+<ul class="dropdown-menu">
+{% for i in category %}
+<li><a href="/kategori/{{ i.url }}">{{ i.title }}</a></li>
+{% endfor %}
+</ul>
+</li>
+{% endblock %}
+
+    {% block content %}
+
+<div class="container">
+<div class="row">
+<div class="col-md-8">
+    {% for i in post_obj %}
+        <a href="/{{ i.url }}"><h1>{{ i.title }}</h1></a>
+    <span class="badge">{{ i.time }}</span><div class="pull-right"><span class="label label-success">{{ i.site_hit }} kez okundu</span></div>
+    {{ i.content|safe|truncatewords:15 }}
+    <div>
+    <p class="text-muted"> <i class="fa fa-hashtag" aria-hidden="true"></i> Kategori :  <a href="/kategori/{{ i.category_list.url }}">{{ i.category_list }}</a></p>
+     </div>
+    <hr>
+    {% endfor %}
+
+
+</div>
+    <br>
+       <div class="col-md-4">
+			<div class="tab-row">
+				<div class="befor-widget">
+					<div class="populat-post-tab">
+					<!-- Nav tabs -->
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab"
+								   data-toggle="tab">Popüler</a>
+							</li>
+							<li role="presentation">
+								<a href="#profile" aria-controls="profile" role="tab"
+								   data-toggle="tab">Son Yazılar</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab"
+								   data-toggle="tab">Rastgele</a>
+							</li>
+						</ul>
+
+						<!-- Tab panes -->
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<div class="tab-post-list">
+                                    {% for i in post %}
+									<div class="tab-post-list-wrap clearfix">
+										<div class="tab-post-thumb pull-left">
+											<figure>
+												<a href="/{{ i.url }}">
+													<img src="{{ i.image.url }}" alt="{{ i.title }}">
+												</a>
+											</figure>
+										</div>
+										<div class="tab-post-title">
+											<h6><a href="/{{ i.url }}">{{ i.title }}</a>
+											</h6>
+											<span>{{ i.time.date }}</span>
+										</div>
+									</div>
+                                    {% endfor %}
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="profile">
+								<div class="tab-post-list">
+                                {% for i in last_content %}
+									<div class="tab-post-list-wrap clearfix">
+
+										<div class="tab-post-thumb pull-left">
+											<figure>
+												<a href="/{{ i.url }}">
+													<img src="{{ i.image.url }}"
+														 alt="{{ i.title }}">
+												</a>
+											</figure>
+										</div>
+
+										<div class="tab-post-title">
+											<h6><a href="/{{ i.url }}">{{ i.title }}</a>
+											</h6>
+											<span>{{ i.time.date }}</span>
+										</div>
+
+									</div>
+                                {% endfor %}
+
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="messages">
+								<div class="tab-post-list">
+                                {% for i in random_post %}
+									<div class="tab-post-list-wrap clearfix">
+
+										<div class="tab-post-thumb pull-left">
+											<figure>
+												<a href="/{{ i.url }}">
+													<img src="{{ i.image.url }}"
+														 alt="{{ i.title }}">
+												</a>
+											</figure>
+										</div>
+
+										<div class="tab-post-title">
+											<h6><a href="/{{ i.url }}">{{ i.title }}</a>
+											</h6>
+											<span>{{ i.time.date }}</span>
+										</div>
+
+									</div>
+                                {% endfor %}
+
+								</div>
+							</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+
+<div class="col-md-4 category">
+<div class="list-group">
+  <a href="#" class="list-group-item" style="background-color: #f0f5f7;">
+   Kategoriler
+  </a>
+{% for i in category %}
+  <a href="/kategori/{{ i.url }}" class="list-group-item"><i style="font-size: 17px;" class="{{ i.icon }}" aria-hidden="true"> {{ i.title }}</i></a>
+{% endfor %}
+</div>
+
+{% if is_paginated %}
+<nav>
+<ul class="pager">
+    {% if page_obj.has_previous %}
+<li class="previous blog-pagination"><a href="?page={{ page_obj.previous_page_number }}">Geri</a></li>
+{% endif %}
+{% for page in page_numbers %}
+{% if page %}
+{% ifequal page page_obj.number %}
+<li class="disabled"><a href="#">{{ page }}</a></li>
+    {% else %}
+<li><a href="?page={{ page }}">{{ page }}</a></li>
+    {% endifequal %}
+{% else %}
+    {% endif %}
+{% endfor %}
+
+    {% if page_obj.has_next %}
+<li class="next blog-pagination"><a href="?page={{ page_obj.next_page_number }}">İleri</a></li>
+{% endif %}
+</ul>
+</nav>
+    {% endif %}
+</div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+    {% endblock %}
+
+{% block last_content %}
+{% for last_post in last_content %}
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+{% endfor %}
+{% endblock %}

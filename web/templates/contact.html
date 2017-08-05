@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load blog_tags %}
+{% load blog_tags %}
+<!-- SEO -->
+
+{% block title %}{% site_title %} - İletişim{% endblock %}
+{% block meta_title %}{% site_title %} - İletişim{% endblock %}
+{% block description %}{% site_description %}{% endblock %}
+{% block keywords %}{% site_tags %}{% endblock %}
+<!-- SEO -->
+{% block og_title %}{% site_title %} - İletişim{% endblock %}
+{% block og_description %}{% site_description %}{% endblock %}
+{% block og_url %}{{request.get_raw_uri}}{% endblock %}
+{% block og_site_name %}{% site_title %} - İletişim{% endblock %}
+{% block og_image %}{{request.get_raw_uri}}{% site_image %}{% endblock %}
+
+{% block content %}
+    <!-- +++++ Contact Section +++++ -->
+
+	<div class="container pt">
+		<div class="row mt">
+			<div class="col-lg-6 col-lg-offset-3 centered">
+                                <img src="{% static 'img/iletisim.jpg' %}" alt="İletişim">
+
+				<h3>Merhaba!</h3>
+				<hr>
+                <p>Aşşağıdaki email adresinden bizimle iletişime geçebilirsiniz.</p>
+                Email : <a href="mailto:{% site_email %}">{% site_email %}</a><br>
+                <hr>
+                <br>
+                Genelde günlük e-postlarımı kontrol ediyorum, kısa zamanda <br>dönüş yapacağımdan emin olabilirsiniz.
+
+			</div>
+		</div>
+
+	</div><!-- /container -->
+{% endblock %}
+
+{% block last_content %}
+
+{% for last_post in last_content %}
+
+<a href="/{{ last_post.url }}"><i class="fa fa-share" aria-hidden="true"></i> {{ last_post.title }}</a><br/>
+
+{% endfor %}
+
+{% endblock %}
