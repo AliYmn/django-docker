@@ -9,7 +9,7 @@ web:
   volumes:
     - /usr/src/app/static
   env_file: .env
-  command: /config.sh
+  command: bash -c "python3 /usr/src/app/manage.py collectstatic --noinput && python3 /usr/src/app/manage.py makemigrations && python3 /usr/src/app/manage.py migrate && /usr/local/bin/gunicorn DjangoBlog.wsgi:application -w 2 -b :8000"
 
 nginx:
   restart: always
