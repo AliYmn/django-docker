@@ -12,8 +12,7 @@ web:
   env_file: .env
   environment:
     DEBUG: 'true'
-  command: /usr/local/bin/gunicorn docker_django.wsgi:application -w 2 -b :8000
-
+  command: bash -c "python3 /usr/src/app/manage.py collectstatic --noinput && python3 /usr/src/app/manage.py makemigrations && python3 /usr/src/app/manage.py migrate && /usr/local/bin/gunicorn DjangoBlog.wsgi:application -w 2 -b :8000"
 nginx:
   restart: always
   build: ./nginx/

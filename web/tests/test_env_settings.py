@@ -23,7 +23,7 @@ class DebugSettingTest(TestCase):
 
     def test_debug_setting(self):
         """Check if config accepts environment variable DEBUG and sets it."""
-        from docker_django import settings
+        from DjangoBlog import settings
         for result, words in self._variants.items():
             for word in words:
                 # print(word, result)
