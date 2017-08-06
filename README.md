@@ -1,3 +1,8 @@
+    
+# Blog 
+   
+<img border="0" src="https://i.hizliresim.com/kWQXjv.png"></a>
+
 ## Django Development With Docker Compose and Machine
 
 Requirements:
@@ -18,7 +23,4 @@ Used technologies :
 
     sh install.sh
     
-    
-# Blog 
-   
-<img border="0" src="https://i.hizliresim.com/kWQXjv.png"></a>
+
