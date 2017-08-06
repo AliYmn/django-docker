@@ -31,11 +31,12 @@ postgres:
   ports:
     - "5432"
   environment:
-    - POSTGRES_USER=postgresx
-    - POSTGRES_PASSWORD=postgresx
-    - POSTGRES_DB=postgresx
+    - POSTGRES_USER=postgres
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=postgres
   volumes:
     - pgdata:/var/lib/postgresql/data/
+
 
 redis:
   restart: always
