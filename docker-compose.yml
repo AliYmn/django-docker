@@ -30,6 +30,10 @@ postgres:
   image: postgres:latest
   ports:
     - "5432"
+  environment:
+    - POSTGRES_USER=postgresx
+    - POSTGRES_PASSWORD=postgresx
+    - POSTGRES_DB=postgresx
   volumes:
     - pgdata:/var/lib/postgresql/data/
 
