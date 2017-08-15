@@ -3,7 +3,7 @@
    
 <img border="0" src="https://i.hizliresim.com/kWQXjv.png"></a>
 
-## Django Development With Docker Compose and Machine
+## Django Development With Docker Compose
 
 Requirements:
 
