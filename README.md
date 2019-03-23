@@ -1,7 +1,7 @@
     
 # Blog 
    
-<img border="0" src="https://i.hizliresim.com/kWQXjv.png"></a>
+<img src="https://i.hizliresim.com/kWQXjv.png" />
 
 ## Django Development With Docker Compose
 
