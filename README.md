@@ -1,7 +1,10 @@
-    
+# Django & Docker
+
+Basically and simply create django with docker.
+
 # Blog 
    
-<img src="https://i.hizliresim.com/kWQXjv.png" />
+<img src="https://raw.githubusercontent.com/AliYmn/django-docker/master/blog.png" />
 
 ## Django Development With Docker Compose
 
