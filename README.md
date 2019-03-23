@@ -2,7 +2,9 @@
 
 Basically and simply create django with docker.
 
-# Blog 
+# Blog
+
+My blog project for to see test :), you can change it
    
 <img src="https://raw.githubusercontent.com/AliYmn/django-docker/master/blog.png" />
 
