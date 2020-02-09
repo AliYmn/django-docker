@@ -1,17 +1,15 @@
 web:
   restart: always
   build: ./web
-  expose:
-    - "8000"
-  links:
+  links: 
     - postgres:postgres
   volumes:
     - /usr/src/app
-    - /usr/src/app/static
   env_file: .env
   environment:
     DEBUG: 'true'
   command: bash -c "python3 /usr/src/app/manage.py collectstatic --noinput && python3 /usr/src/app/manage.py makemigrations && python3 /usr/src/app/manage.py migrate && /usr/local/bin/gunicorn DjangoBlog.wsgi:application -w 2 -b :8000"
+
 nginx:
   restart: always
   build: ./nginx/
