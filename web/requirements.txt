@@ -1,9 +1,8 @@
 django==1.10.5
 django-mptt==0.8.7
 django-imagekit==3.3
-pillow==4.0.0
-django-disqus==0.5
-git+https://github.com/AliYmn/django-ckeditor
-gunicorn
+pillow
+django-ckeditor
+django-disqus
 psycopg2
-redis
+gunicorn
